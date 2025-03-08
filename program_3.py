@@ -1,25 +1,44 @@
-# Program #3: US_Population
-def main():
-    # Have the user input (using a loop) various information that contains three pieces of data: 
-    # year, name of state, and population.  
-    # Store all of this information in a list of lists.  For example it might be stored like this:
-    
-    # [[2010, "Maine", 1987435], [2010,"Minnesota",6873202], [2011, "Iowa", 3421988]]
-    all_entered_values = []
+# Title: Week 7 Program 3
+# Author: Michael Beaudet
+# Date: 3/7/25
 
-    # Now have the user enter a year. 
-    
-    # The program will add the populations from all states in the list of list for that year only.
-    # Pass the list and year to the sum_population_for_year
+def main():
+# Initialize the all_entered_values list
+    all_entered_values = []
+# Create a while loop 
+    while True:
+# Get the year
+        year = input("Enter the year or type done to finish: ")
+        if year.lower() == 'done':
+            break
+        try:
+            year = int(year)
+# Get the state
+            state = input("Enter the state's name: ")
+# Get the population
+            population = int(input("Enter the population: "))
+# Put the results into the list
+            all_entered_values.append([year, state, population])
+# Display and error if the user does a wrong input
+        except ValueError:
+            print("Invalid input. Please enter the proper values.")
+# Get the year that the user whats to sum
+    year_to_sum = int(input("Enter the year to sum the populations for: "))
+# Call the data
+    sum_population_for_year(all_entered_values, year_to_sum)
 
 def sum_population_for_year(all_entered_values, year_to_sum):
-    # Loop through and sum the populations for the appropriate year. 
-    # e.g. for the list on line 7 the total would be 8,860,637 if the user enterd 2010 for the year to sum,
-    # or 3,421,988 if they enterd 2011 for the year to sum.
+# Initialaze total_population 
+    total_population = 0
+# Create the loop 
+    for input in all_entered_values:
+        year, state, population = input 
+        if year == year_to_sum:
+# Add the population
+            total_population += population
+# Display the results
+    print(f"The total population for the year {year_to_sum} is: {total_population}")
 
-    # print the totalled population
-
-
-# Call the main function.
+# Call the main function
 if __name__ == '__main__':
     main()
